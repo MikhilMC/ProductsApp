@@ -1,0 +1,18 @@
+<div class="py-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3 class="mb-0">{{title}}</h3>
+                </div>
+                <div class="card-body">
+                    Do you really want to delete {{ product.productName }}?
+                    <div class="w-50 mx-auto mt-3">
+                        <button class="btn btn-danger mr-2" (click)="deleteProduct(id)">Yes</button>
+                        <button class="btn btn-success ml-2" (click)="gotoProducts()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

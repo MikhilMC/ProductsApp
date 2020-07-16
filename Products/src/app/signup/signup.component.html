@@ -1,0 +1,32 @@
+<div class="py-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <span class="anchor" id="formLogin"></span>
+    
+            <!-- Form card login -->
+            <div class="card rounded-0 w-40">
+            <div class="card-header">
+                <h3 class="mb-0">{{title}}</h3>
+            </div>
+            <div class="card-body">
+                <form class="form" #userSignup="ngForm" (ngSubmit)="signupUser()">
+                <div class="form-group">
+                    <label for="email">Username</label>
+                    <input type="text" [(ngModel)]="signupUserDetails.email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control rounded-0" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                    <small class="text-danger" [class.d-none]="email.valid || email.touched">Enter a valid email</small>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" [(ngModel)]="signupUserDetails.password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" name="password" class="form-control rounded-0" minlength="6" required>
+                    <small class="text-danger" [class.d-none]="password.valid || password.touched">Enter a valid password</small>
+                </div>
+                <div class="form-group">
+                    <button type="submit" [disabled]="userSignup.form.invalid" class="btn btn-primary float-right">Signup</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
