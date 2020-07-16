@@ -1,5 +1,5 @@
 <div class="card">
-    <form (ngSubmit)="addProduct()" method="POST">
+    <form [formGroup]="newProduct" (ngSubmit)="addProduct()">
         <div class="card-header">
             {{title}}
         </div>
@@ -8,39 +8,102 @@
                 <tbody>
                     <tr>
                         <td><label>Product Id</label></td>
-                        <td><input type="text" name="p_id" [(ngModel)]="productItem.productId"></td>
+                        <td>
+                            <input type="text" formControlName="productId" name="productId" 
+                                [class.is-invalid]="newProduct.get('productId').invalid && newProduct.get('productId').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('productId').invalid && newProduct.get('productId').touched">
+                                <small *ngIf="newProduct.get('productId').errors.required" class="text-danger">Product ID is required</small><br>
+                                <small *ngIf="newProduct.get('productId').errors.pattern" class="text-danger">Enter correct product ID</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Name</label></td>
-                        <td><input type="text" name="p_name" [(ngModel)]="productItem.productName"></td>
+                        <td>
+                            <input type="text" formControlName="productName" name="productName"
+                                [class.is-invalid]="newProduct.get('productName').invalid && newProduct.get('productName').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('productName').invalid && newProduct.get('productName').touched">
+                                <small *ngIf="newProduct.get('productName').errors.required" class="text-danger">Name is required</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Code</label></td>
-                        <td><input type="text" name="p_code" [(ngModel)]="productItem.productCode"></td>
+                        <td>
+                            <input type="text" formControlName="productCode" name="productCode"
+                                [class.is-invalid]="newProduct.get('productCode').invalid && newProduct.get('productCode').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('productCode').invalid && newProduct.get('productCode').touched">
+                                <small *ngIf="newProduct.get('productCode').errors.required" class="text-danger">Product code is required</small><br>
+                                <small *ngIf="newProduct.get('productCode').errors.pattern" class="text-danger">Enter correct product code</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Date</label></td>
-                        <td><input type="text" name="p_date" [(ngModel)]="productItem.releaseDate"></td>
+                        <td>
+                            <input type="text" formControlName="releaseDate" name="releaseDate"
+                                [class.is-invalid]="newProduct.get('releaseDate').invalid && newProduct.get('releaseDate').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('releaseDate').invalid && newProduct.get('releaseDate').touched">
+                                <small *ngIf="newProduct.get('releaseDate').errors.required" class="text-danger">Release date is required</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Description</label></td>
-                        <td><input type="text" name="p_desc" [(ngModel)]="productItem.description"></td>
+                        <td>
+                            <input type="text" formControlName="description" name="description"
+                                [class.is-invalid]="newProduct.get('description').invalid && newProduct.get('description').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('description').invalid && newProduct.get('description').touched">
+                                <small *ngIf="newProduct.get('description').errors.required" class="text-danger">Description is required</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Price</label></td>
-                        <td><input type="text" name="p_price" [(ngModel)]="productItem.price"></td>
+                        <td>
+                            <input type="text" formControlName="price" name="price" 
+                                [class.is-invalid]="newProduct.get('price').invalid && newProduct.get('price').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('price').invalid && newProduct.get('price').touched">
+                                <small *ngIf="newProduct.get('price').errors.required" class="text-danger">Price is required</small><br>
+                                <small *ngIf="newProduct.get('price').errors.pattern" class="text-danger">Enter correct price</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Star Rating</label></td>
-                        <td><input type="text" name="p_rating" [(ngModel)]="productItem.starRating"></td>
+                        <td>
+                            <input type="text" formControlName="starRating" name="starRating"
+                                [class.is-invalid]="newProduct.get('starRating').invalid && newProduct.get('starRating').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('starRating').invalid && newProduct.get('starRating').touched">
+                                <small *ngIf="newProduct.get('starRating').errors.required" class="text-danger">Star rating is required</small><br>
+                                <small *ngIf="newProduct.get('starRating').errors.pattern" class="text-danger">Enter integers between 0 and 5</small><br>
+                                <small *ngIf="newProduct.get('starRating').errors.min" class="text-danger">Values less than 0 is not permitted</small><br>
+                                <small *ngIf="newProduct.get('starRating').errors.max" class="text-danger">Values greater than 5 is not permitted</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Product Image URL</label></td>
-                        <td><input type="text" name="p_image" [(ngModel)]="productItem.imageUrl"></td>
+                        <td>
+                            <input type="text" formControlName="imageUrl" name="imageUrl" 
+                                [class.is-invalid]="newProduct.get('imageUrl').invalid && newProduct.get('imageUrl').touched" 
+                                class="form-control rounded-0">
+                            <div *ngIf="newProduct.get('imageUrl').invalid && newProduct.get('imageUrl').touched">
+                                <small *ngIf="newProduct.get('imageUrl').errors.required" class="text-danger">Image URL is required</small><br>
+                                <small *ngIf="newProduct.get('imageUrl').errors.pattern" class="text-danger">Enter correct URL</small>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" value="Submit"></td>
+                        <td><input type="submit" class="btn btn-primary" [disabled]="newProduct.invalid" value="Submit"></td>
                     </tr>
                 </tbody>
             </table>

@@ -125,14 +125,14 @@ app.post("/product/:id", verifyToken, (req, res) => {
     res.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
     console.log(req.body);
     let editedProduct = {}
-    if (req.body.editedProduct.productId !== null) editedProduct.productId = req.body.editedProduct.productId;
-    if (req.body.editedProduct.productName !== null) editedProduct.productName = req.body.editedProduct.productName;
-    if (req.body.editedProduct.productCode !== null) editedProduct.productCode = req.body.editedProduct.productCode;
-    if (req.body.editedProduct.releaseDate !== null) editedProduct.releaseDate = req.body.editedProduct.releaseDate;
-    if (req.body.editedProduct.description !== null) editedProduct.description = req.body.editedProduct.description;
-    if (req.body.editedProduct.price !== null) editedProduct.price = req.body.editedProduct.price;
-    if (req.body.editedProduct.starRating !== null) editedProduct.starRating = req.body.editedProduct.starRating;
-    if (req.body.editedProduct.imageUrl !== null) editedProduct.imageUrl = req.body.editedProduct.imageUrl
+    if (req.body.editedProduct.productId !== "") editedProduct.productId = req.body.editedProduct.productId;
+    if (req.body.editedProduct.productName !== "") editedProduct.productName = req.body.editedProduct.productName;
+    if (req.body.editedProduct.productCode !== "") editedProduct.productCode = req.body.editedProduct.productCode;
+    if (req.body.editedProduct.releaseDate !== "") editedProduct.releaseDate = req.body.editedProduct.releaseDate;
+    if (req.body.editedProduct.description !== "") editedProduct.description = req.body.editedProduct.description;
+    if (req.body.editedProduct.price !== "") editedProduct.price = req.body.editedProduct.price;
+    if (req.body.editedProduct.starRating !== "") editedProduct.starRating = req.body.editedProduct.starRating;
+    if (req.body.editedProduct.imageUrl !== "") editedProduct.imageUrl = req.body.editedProduct.imageUrl
     ProductData.findByIdAndUpdate(id, editedProduct, (err, product) => {
         if (err) {
             console.log(err);

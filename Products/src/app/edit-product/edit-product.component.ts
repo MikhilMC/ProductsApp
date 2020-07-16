@@ -4,6 +4,7 @@ import { ProductService } from "../product.service";
 import { ProductModel } from "../product-list/product.model";
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from "../auth.service";
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-edit-product',
@@ -13,12 +14,30 @@ import { AuthService } from "../auth.service";
 export class EditProductComponent implements OnInit {
   title:String = "Edit Product";
   id: String;
+  newProduct = this.fb.group({
+    productId: ['',Validators.pattern("([0-9])+")],
+    productName: [''],
+    productCode: ['',Validators.pattern("[A-Z]{3}-[0-9]{1,4}")],
+    releaseDate: [''],
+    description: [''],
+    price: ['', Validators.pattern(/^\d*([.]?\d+)?$/)],
+    starRating: ['', 
+      [
+        Validators.pattern(/^[0-5](\.?\d+)?$/),
+        Validators.min(0),
+        Validators.max(5)
+      ]
+    ],
+    imageUrl: ['', Validators.pattern('((http(s)?)?:\/\/.*\.(?:png|jpg))')]
+  });
+
   product = new ProductModel(null,null,null,null,null,null,null,null);
   editedProduct = new ProductModel(null,null,null,null,null,null,null,null);
   constructor(private productService:ProductService,
               private actRoute: ActivatedRoute,
               private _router: Router,
-              private _auth: AuthService) { }
+              private _auth: AuthService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.actRoute.paramMap
@@ -34,6 +53,7 @@ export class EditProductComponent implements OnInit {
   }
 
   editProduct() {
+    this.editedProduct = this.newProduct.value;
     this.productService.editProduct(this.id, this.editedProduct)
     .subscribe(
       res => {
