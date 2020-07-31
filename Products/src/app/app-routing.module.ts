@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { DeleteComponent } from './delete/delete.component';
+import { DummyComponentComponent } from './dummy-component/dummy-component.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: "products", component: ProductListComponent, canActivate: [AuthGuard] },
   { path: "add", component: NewProductComponent, canActivate: [AuthGuard] },
   { path: "product/:id", component: EditProductComponent, pathMatch: "full", canActivate: [AuthGuard] },
-  { path: "delete/:id", component: DeleteComponent, pathMatch: "full", canActivate: [AuthGuard] }
+  { path: "delete/:id", component: DeleteComponent, pathMatch: "full", canActivate: [AuthGuard] },
+  { path: "dummy", component: DummyComponentComponent }
 ];
 
 @NgModule({

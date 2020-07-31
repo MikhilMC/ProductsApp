@@ -16,15 +16,25 @@ export class SignupComponent implements OnInit {
   signupUserDetails = new UserModel(null, null);
 
   ngOnInit(): void {
-    this._auth.logoutUser();
+    // this._auth.logoutUser();
+    localStorage.removeItem('token');
   }
 
   signupUser() {
     this._auth.signupUser(this.signupUserDetails)
     .subscribe(
       res => {
-        localStorage.setItem("token", res["token"]);
-        this._router.navigate(["/products"]);
+        if (res['msg'] !== undefined) {
+          alert(res['msg']);
+          this._router.navigateByUrl("/dummy", {skipLocationChange: true})
+          .then(()=>{
+            this._router.navigate(['/signup']);
+          })
+        } else {
+          console.log(res);
+          localStorage.setItem('token', res['token']);
+          this._router.navigate(["/products"])
+        }
       },
       err => console.log(err)
     );

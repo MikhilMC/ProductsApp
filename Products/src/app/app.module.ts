@@ -16,6 +16,7 @@ import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
 import { TokenInterceptorService } from "./token-interceptor.service";
 import { DeleteComponent } from './delete/delete.component';
+import { DummyComponentComponent } from './dummy-component/dummy-component.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DeleteComponent } from './delete/delete.component';
     EditProductComponent,
     LoginComponent,
     SignupComponent,
-    DeleteComponent
+    DeleteComponent,
+    DummyComponentComponent
   ],
   imports: [
     BrowserModule,
